@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing cards</h1>
+<table>
+<% @cards.each do |card| %>
+<tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+<td>
+<%= image_tag(card.image_url, class: 'list_image') %>
+</td>
+<td class="list_description">
+<dl>
+<dt><%= card.title %></dt>
+<dd><%= truncate(strip_tags(card.description),
+length: 80) %></dd>
+</dl>
+</td>
+<td class="list_actions">
+<%= link_to 'Show', card %><br/>
+<%= link_to 'Edit', edit_card_path(card) %><br/>
+<%= link_to 'Destroy', card,
+confirm: 'Are you sure?',
+method: :delete %>
+</td>
+</tr>
+<% end %>
+</table>
+<br />
+<%= link_to 'New card', new_card_path %>

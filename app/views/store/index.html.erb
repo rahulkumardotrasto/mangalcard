@@ -1,0 +1,16 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+<h1>Begin your celebrations with Cards</h1>
+<% @cards.each do |card| %>
+<div class="entry">
+<%= image_tag(card.image_url) %>
+<h3><%= card.title %></h3>
+<%= sanitize(card.description) %>
+<div class="price_line">
+<span class="price"><%= number_to_currency(card.price) %></span>
+<%= button_to 'Add to Cart', line_items_path(card_id: card),
+remote: true %>
+</div>
+</div>
+<% end %>
